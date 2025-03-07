@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
+<head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link
@@ -9,146 +9,184 @@
     <link href="/assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-    <body id="page-top">
+<body id="page-top">
 
 <!-- Page Wrapper -->
-    <div id="wrapper">
+<div id="wrapper">
 
     <!-- Sidebar -->
-        <div th:replace="~{/admin/layout/sidebar :: sidebar}"></div>
+    <div th:replace="~{/admin/layout/sidebar :: sidebar}"></div>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
-            <div id="content">
-                <!-- Topbar -->
-                <nav th:replace="~{/admin/layout/topbar :: topbar}"></nav>
-                <!-- End of Topbar -->
-                <!-- Begin Page Content -->
-                <div class="container-fluid container-md">
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Quản Lý Nhân Viên / Sửa thông tin </h1>
-                        <a th:href="@{/admin/users}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-list fa-sm text-white-50"></i> Danh Sách Nhân Viên </a>
-                    </div>
-                    <!-- Content Row -->
-                    <div class="container-fluid">
-                        <form class="user" th:object="${user}" method="POST" th:action="@{/admin/user/update}" enctype="multipart/form-data">
+        <div id="content">
+            <!-- Topbar -->
+            <nav th:replace="~{/admin/layout/topbar :: topbar}"></nav>
+            <!-- End of Topbar -->
+            <!-- Begin Page Content -->
+            <div class="container-fluid container-md">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Quản Lý Nhân Viên / Sửa thông tin </h1>
+                    <a th:href="@{/admin/users}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                            class="fas fa-list fa-sm text-white-50"></i> Danh Sách Nhân Viên </a>
+                </div>
+                <!-- Content Row -->
+                <div class="container-fluid">
+                    <div class="container p-4 shadow rounded bg-white">
+                        <h2 class="text-center text-primary mb-4">Cập nhật thông tin người dùng</h2>
+                        <form class="user" th:object="${user}" method="POST" th:action="@{/admin/user/update}"
+                              enctype="multipart/form-data">
                             <input type="hidden" th:field="*{id}">
-                            <div class="form-group">
-                                <label >Họ và tên: </label>
-                                <input type="text" class="form-control form-control-user" placeholder="Họ và tên" th:field="*{fullname}">
-                                <p th:if="${#fields.hasErrors('fullname')}" class="text-danger"><span th:errors="*{fullname}"></span></p>
+                            <input type="hidden" th:field="*{password}">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Họ và tên:</label>
+                                        <input type="text" class="form-control" placeholder="Họ và tên"
+                                               th:field="*{fullname}" required>
+                                        <p th:if="${#fields.hasErrors('fullname')}" class="text-danger"
+                                           th:errors="*{fullname}"></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Ngày sinh:</label>
+                                        <input type="date" class="form-control" th:field="*{birth}" required>
+                                        <p th:if="${#fields.hasErrors('birth')}" class="text-danger"
+                                           th:errors="*{birth}"></p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label >Ngày sinh: </label>
-                                <input type="date" class="form-control form-control-user" th:field="*{birth}">
-                                <p th:if="${#fields.hasErrors('birth')}" class="text-danger"><span th:errors="*{birth}"></span></p>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Email:</label>
+                                        <input type="email" class="form-control" placeholder="Email" th:field="*{email}"
+                                               required>
+                                        <p th:if="${#fields.hasErrors('email')}" class="text-danger"
+                                           th:errors="*{email}"></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Số điện thoại:</label>
+                                        <input type="tel" class="form-control" placeholder="Số điện thoại"
+                                               th:field="*{phone}" required>
+                                        <p th:if="${#fields.hasErrors('phone')}" class="text-danger"
+                                           th:errors="*{phone}"></p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label >Email: </label>
-                                <input type="text" class="form-control form-control-user" placeholder="Email" th:field="*{email}">
-                                <p th:if="${#fields.hasErrors('email')}" class="text-danger"><span th:errors="*{email}"></span></p>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Tên đăng nhập:</label>
+                                        <input type="text" class="form-control" placeholder="Tên đăng nhập"
+                                               th:field="*{username}" required>
+                                        <p th:if="${#fields.hasErrors('username')}" class="text-danger"
+                                           th:errors="*{username}"></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Địa chỉ:</label>
+                                        <input type="text" class="form-control" placeholder="Nhập địa chỉ"
+                                               th:field="*{address}" required>
+                                        <p th:if="${#fields.hasErrors('address')}" class="text-danger"
+                                           th:errors="*{address}"></p>
+                                    </div>
+                                </div>
                             </div>
+
                             <div class="form-group">
-                                <label >Số điện thoại: </label>
-                                <input type="text" class="form-control form-control-user" placeholder="Số điện thoại" th:field="*{phone}">
-                                <p th:if="${#fields.hasErrors('phone')}" class="text-danger"><span th:errors="*{phone}"></span></p>
-                            </div>
-                            <div class="form-group">
-                                <label >Tên đăng nhập: </label>
-                                <input type="text" class="form-control form-control-user" placeholder="Tên đăng nhập" th:field="*{username}">
-                                <p th:if="${#fields.hasErrors('username')}" class="text-danger"><span th:errors="*{username}"></span></p>
-                            </div>
-                            <div class="form-group">
-                                <label>Địa chỉ: </label>
-                                <input type="text" id="address" class="form-control form-control-user" placeholder="Nhập địa chỉ" th:field="*{address}">
-                                <p th:if="${#fields.hasErrors('address')}" class="text-danger"><span th:errors="*{address}"></span></p>
-                            </div>
-                            <br>
-                            <div class="form-group">
-                                <label>Giới tính: </label>
+                                <label>Giới tính:</label><br>
                                 <div class="form-check form-check-inline">
-                                    <input type="radio" class="form-check-input" name="gender" th:field="*{gender}" th:value="true">
+                                    <input type="radio" class="form-check-input" th:field="*{gender}" th:value="true"
+                                           required>
                                     <label class="form-check-label">Nam</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input type="radio" class="form-check-input" name="gender" th:field="*{gender}" th:value="false">
+                                    <input type="radio" class="form-check-input" th:field="*{gender}" th:value="false">
                                     <label class="form-check-label">Nữ</label>
                                 </div>
-                                <p th:if="${#fields.hasErrors('gender')}" class="text-danger"><span th:errors="*{gender}"></span></p>
+                                <p th:if="${#fields.hasErrors('gender')}" class="text-danger" th:errors="*{gender}"></p>
                             </div>
+
+                            <!-- Không thay đổi phần chức vụ -->
                             <div class="form-group">
-                                <label>Chức vụ:</label> <br>
+                                <label>Chức vụ:</label><br>
                                 <select th:field="*{roles}" class="form-control">
-                                    <option th:each="r : ${roles}" th:value="${r.id}" th:utext="${r.name}"></option>
+                                    <option th:each="r : ${roleList}" th:value="${r.id}" th:text="${r.name}"
+                                            th:selected="${r.id}==${user.id}"></option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="avatarFile">Avatar: </label>
-                                <input type="file" id="avatarFile" name="fileAvatar" class="form-control" accept=".png, .jpg, .jpeg">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="avatarFile">Avatar:</label>
+                                        <input type="file" id="avatarFile" name="fileAvatar" class="form-control"
+                                               accept=".png, .jpg, .jpeg">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    <img th:src="@{/avatars/{avatar}(avatar=${user.avatar})}" id="avatarPreview"
+                                         alt="Avatar Preview" class="rounded shadow-sm" style="max-width:150px;">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <img alt="Avatar Preview" th:src="@{/resources/static/images/avatars/{avatar}(avatar=${user.avatar})}" id="avatarPreview" style="display:block; max-width:150px; border-radius:10px;">
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-user btn-block">Sửa thông tin</button>
+
+                            <button type="submit" class="btn btn-primary btn-block mt-4">Sửa thông tin</button>
                         </form>
                     </div>
                 </div>
-            </div>
-        <!-- End of Main Content -->
-        <!-- Footer -->
-        <footer th:replace="~{/admin/layout/footer :: footer}"></footer>
-    </div>
 
-    </div>
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-    <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
-                    </div>
-                </div>
+                <!-- End of Main Content -->
+                <!-- Footer -->
+                <footer th:replace="~{/admin/layout/footer :: footer}"></footer>
             </div>
         </div>
 
-    <!-- Bootstrap core JavaScript-->
-        <script src="/assets/admin/vendor/jquery/jquery.min.js"></script>
-        <script src="/assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- Core plugin JavaScript-->
-        <script src="/assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-        <!-- Custom scripts for all pages-->
-        <script src="/assets/admin/js/sb-admin-2.min.js"></script>
-    <script>
-        $(document).ready(() => {
-            $("#avatarFile").change(function (e) {
-                const file = e.target.files[0];
-                const validImageTypes = ["image/jpeg", "image/png", "image/jpg"];
-                if (file && validImageTypes.includes(file.type)) {
-                    const imgURL = URL.createObjectURL(file);
-                    $("#avatarPreview").attr("src", imgURL).css({"display": "block", "max-width": "150px", "border-radius": "10px"});
-                } else {
-                    alert("Vui lòng chọn một file ảnh hợp lệ (JPEG/PNG/JPG).");
-                    $(this).val(""); // Xóa file nếu không hợp lệ
-                    $("#avatarPreview").attr("src", "").css("display", "none");
-                }
-            });
+    </div>
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div th:replace="~{/admin/layout/logout :: logout}"></div>
+</div>
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="/assets/admin/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="/assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="/assets/admin/js/sb-admin-2.min.js"></script>
+<script>
+    $(document).ready(() => {
+        $("#avatarFile").change(function (e) {
+            const file = e.target.files[0];
+            const validImageTypes = ["image/jpeg", "image/png", "image/jpg"];
+            if (file && validImageTypes.includes(file.type)) {
+                const imgURL = URL.createObjectURL(file);
+                $("#avatarPreview").attr("src", imgURL).css({
+                    "display": "block",
+                    "max-width": "200px",
+                    "border-radius": "10px"
+                });
+            } else {
+                alert("Vui lòng chọn một file ảnh hợp lệ (JPEG/PNG/JPG).");
+                $(this).val(""); // Xóa file nếu không hợp lệ
+                $("#avatarPreview").attr("src", "").css("display", "none");
+            }
         });
-    </script>
-    </body>
+    });
+</script>
+</body>
 </html>

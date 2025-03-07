@@ -21,13 +21,9 @@ public class UserService {
 
     public Page<User> getUsersPage(String keyword, Pageable pageable) {
         if (keyword == null || keyword.trim().equals("")) {
-            return userRepository.findAll(pageable);
+            return userRepository.findUsersByRole(pageable);
         }
-        return userRepository.findByFullnameOrEmailOrPhoneOrRole(keyword,pageable);
-    }
-
-    public List<User> getALlUser(){
-        return userRepository.findAll();
+        return userRepository.findByFullnameOrEmailOrPhone(keyword,pageable);
     }
 
     public void createUser(@Valid User user) {
@@ -44,5 +40,12 @@ public class UserService {
 
     public void updateUser( @Valid User user) {
         userRepository.save(user);
+    }
+
+    public Page<User> getClientPages(String keyword, Pageable pageable) {
+        if (keyword == null || keyword.trim().equals("")) {
+            return userRepository.findUsersByRoleClient(pageable);
+        }
+        return userRepository.findByFullnameOrEmailOrPhoneClient(keyword,pageable);
     }
 }

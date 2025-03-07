@@ -3,6 +3,7 @@ package org.example.ecommerceproject.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @ToString
@@ -24,7 +25,7 @@ public class Shipping {
 
     private String description;
 
-    private Double price;
+    private BigDecimal price;
 
     private String deliveryTime;
 

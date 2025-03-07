@@ -4,6 +4,7 @@ package org.example.ecommerceproject.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 @ToString
 @NoArgsConstructor
@@ -22,7 +23,7 @@ public class Transaction {
 
     private String name;
 
-    private Double totalMoney;
+    private BigDecimal totalMoney;
 
     private String message;
 

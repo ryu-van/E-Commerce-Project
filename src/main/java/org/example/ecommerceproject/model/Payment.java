@@ -4,6 +4,7 @@ package org.example.ecommerceproject.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 @ToString
@@ -24,7 +25,7 @@ public class Payment {
 
     private String paymentStatus;
 
-    private Double paymentAmount;
+    private BigDecimal paymentAmount;
 
     private Date paymentDate;
 

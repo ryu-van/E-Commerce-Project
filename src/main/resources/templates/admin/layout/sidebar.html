@@ -29,22 +29,21 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNguoiDung"
            aria-expanded="true" aria-controls="collapseNguoiDung">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Nhân Viên</span>
+            <span>Người Dùng </span>
         </a>
         <div id="collapseNguoiDung" class="collapse" aria-labelledby="headingNguoiDung" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quản Lý Người Dùng</h6>
-                <a class="collapse-item" href="">Danh sách nhân viên</a>
-                <a class="collapse-item" href="">Tạo nhân viên</a>
-                <a class="collapse-item" href="">Sửa nhân viên</a>
-                <a class="collapse-item" href="">Danh sách khách hàng</a>
-                <a class="collapse-item" href="">Tạo nhân viên</a>
-                <a class="collapse-item" href="">Sửa nhân viên</a>
-
+                <a class="collapse-item" th:href="@{/admin/users}">Danh sách nhân viên</a>
+                <a class="collapse-item" th:href="@{/admin/user/create}">Tạo nhân viên</a>
+                <a class="collapse-item" th:href="@{/admin/clients}">Danh sách khách hàng</a>
+                <a class="collapse-item" th:href="@{/admin/client/create}">Tạo khách hàng</a>
             </div>
         </div>
     </li>
-
+    <div class="sidebar-heading">
+        Quản Lý Sản Phẩm
+    </div>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSanPham"
            aria-expanded="true" aria-controls="collapseSanPham">
@@ -54,9 +53,9 @@
         <div id="collapseSanPham" class="collapse" aria-labelledby="headingSanPham" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quản Lý Sản Phẩm</h6>
-                <a class="collapse-item" href="cards.html">Danh sách khách hàng</a>
-                <a class="collapse-item" href="cards.html">Tạo khách hàng</a>
-                <a class="collapse-item" href="cards.html">Sửa khách hàng</a>
+                <a class="collapse-item" href="cards.html">Danh sách sản phẩm </a>
+                <a class="collapse-item" href="cards.html">Tạo mới danh mục sản phẩm </a>
+                <a class="collapse-item" href="cards.html">Tạo mới sản phẩm </a>
             </div>
         </div>
     </li>
@@ -129,6 +128,5 @@
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
-
     <!-- Sidebar Message -->
 </ul>

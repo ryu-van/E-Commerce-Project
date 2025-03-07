@@ -6,16 +6,45 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public  interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query("SELECT u FROM User u LEFT JOIN u.roles r " +
-            "WHERE u.fullname LIKE %:keyword% " +
+    @Query("SELECT DISTINCT u FROM User u " +
+            "JOIN u.roles r " +
+            "WHERE (u.fullname LIKE %:keyword% " +
             "OR u.email LIKE %:keyword% " +
-            "OR u.phone LIKE %:keyword% " +
-            "OR r.name LIKE %:keyword%")
-    Page<User> findByFullnameOrEmailOrPhoneOrRole(@Param("keyword") String keyword, Pageable pageable);
+            "OR u.phone LIKE %:keyword%) " +
+            "AND r.id != 3")
+    Page<User> findByFullnameOrEmailOrPhone(@Param("keyword") String keyword, Pageable pageable);
+
+    @Query("SELECT DISTINCT u FROM User u " +
+            "JOIN u.roles r " +
+            "WHERE r.id <> 3")
+    Page<User> findUsersByRole(Pageable pageable);
+
+    @Query("SELECT DISTINCT u FROM User u " +
+            "JOIN u.roles r " +
+            "WHERE (u.fullname LIKE %:keyword% " +
+            "OR u.email LIKE %:keyword% " +
+            "OR u.phone LIKE %:keyword%) " +
+            "AND r.id = 3")
+    Page<User> findByFullnameOrEmailOrPhoneClient(@Param("keyword") String keyword, Pageable pageable);
+
+    @Query("SELECT DISTINCT u FROM User u " +
+            "JOIN u.roles r " +
+            "WHERE r.id = 3")
+    Page<User> findUsersByRoleClient(Pageable pageable);
+
+
+
+
+
+
+
+
+
 
 }

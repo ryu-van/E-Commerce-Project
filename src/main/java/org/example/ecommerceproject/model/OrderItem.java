@@ -4,6 +4,7 @@ package org.example.ecommerceproject.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 @Data
@@ -21,7 +22,7 @@ public class OrderItem {
 
     private Integer quantity;
 
-    private Double price;
+    private BigDecimal price;
 
     @ManyToOne()
     @JoinColumn(name = "order_id")
